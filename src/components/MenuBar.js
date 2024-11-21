@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+
 
 function MenuBar(props) {
   /*
@@ -12,24 +13,31 @@ function MenuBar(props) {
 
   */
 
+  // const [currentItem, setCurrentItem] = useState("Pokemon")
+  const menuItems = [
+    {item: "Profile", icon: "user large icon"},
+    {item: "Photos", icon: "photo large icon"},
+    {item: "Cocktails", icon: "cocktail large icon"},
+    {item: "Pokemon", icon: "themeisle large icon"}
+  ]
+
+
   return (
     <div className="ui four item menu">
-      <span className="item active">
-        <i className="user large icon" />
-      </span>
-
-      <span className="item">
-        <i className="photo large icon" />
-      </span>
-
-      <span className="item">
-        <i className="cocktail large icon" />
-      </span>
-
-      <span className="item">
-        <i className=" themeisle large icon" />
-      </span>
+    {menuItems.map((menuItem) => (
+        <span
+          key={menuItem.item}
+          className={`item ${props.currentItem === menuItem.item ? "active" : ""}`}
+          // onClick = {menuItemClick(menuItem.item)}
+          onClick={() => props.menuItemClick(menuItem.item)}
+        >
+          <i className={menuItem.icon} />
+        </span>
+    ))}
+     
     </div>
+
+
   );
 }
 
